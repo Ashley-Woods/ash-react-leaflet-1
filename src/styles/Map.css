@@ -1,0 +1,5 @@
+.leaflet-container {
+  height: 50vh;
+  width: 100vh;
+  opacity: 0.75;
+}
