@@ -4,6 +4,7 @@ import { useObserver } from "mobx-react-lite";
 import { useStores } from "../stores/index";
 import L from "leaflet";
 import "../styles/Map.css";
+import testData from "../data/data.json";
 
 const Map2 = () => {
   const mapRef = useRef(null)
@@ -59,12 +60,12 @@ const Map2 = () => {
   
   }, [])
 
-  return (
+  return useObserver (() => (
     <>
       <div id="map" 
         className="Map"/>
     </>
-  )
+  ))
 }
 
 export default Map2
