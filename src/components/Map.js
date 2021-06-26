@@ -1,5 +1,5 @@
 import React from "react";
-import { Component, useState } from "react";
+import { useState } from "react";
 import { useObserver } from "mobx-react-lite";
 import { useStores } from "../stores/index";
 import {
