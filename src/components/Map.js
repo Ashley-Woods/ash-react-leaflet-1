@@ -18,46 +18,45 @@ const Map = () => {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   });
 
+  // L.TileLayer("http://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=owmkeyhere"));
+
   // Options for our map instance:
   const mapParams = {
     center: mapStore.center,
     zoom: mapStore.zoom,
+    zoomControl: false,
     closePopupOnClick: false,
     layers: [tileRef.current] // Start with just the base layer
   };
   
-  // Map creation:
   useEffect(() => {
+    // Map creation:
     mapRef.current = L.map("map", mapParams);
-  }, []);
 
-  // Controls:
-  useEffect(() => {
-      // Add the base layer to the control:
-      controlRef.current = L.control.layers({ 
-        OpenStreetMap: tileRef.current 
-      }).addTo(mapRef.current);
+    // Add the base layer to the control:
+    controlRef.current = L.control.layers({ 
+      OpenStreetMap: tileRef.current 
+    }).addTo(mapRef.current);
       
-      // Add zoomControl:
-      L.control.zoom({ 
-        position: "topright" 
-      }).addTo(mapRef.current);
-  }, [])
+    // Add zoomControl:
+    L.control.zoom({ 
+      position: "topright" 
+    }).addTo(mapRef.current);
 
-  // Map events:
-  useEffect(() => {
+    // Add scale
+    L.control.scale().addTo(mapRef.current);
+
+    // Map events:
     mapRef.current.on("zoomstart", () => {
-      console.log('zoom ' + mapRef.current.getZoom());
-      mapStore.zoom = mapRef.current.getZoom();
-    });
-  }, [])
+        console.log('zoom ' + mapRef.current.getZoom());
+        mapStore.zoom = mapRef.current.getZoom();
+      });
 
-  // Create the layerGroup:
-  useEffect(() => {
+    // Create the layerGroup:
     layerRef.current = L.layerGroup().addTo(mapRef.current);
-    controlRef.current.addOverlay(layerRef.current, 'Locations');
-    controlRef.current.addOverlay(layerRef.current, 'Links');
-  
+    //controlRef.current.addOverlay(layerRef.current, 'Locations');
+    //controlRef.current.addOverlay(layerRef.current, 'Links');
+
   }, [])
 
   return useObserver (() => (
