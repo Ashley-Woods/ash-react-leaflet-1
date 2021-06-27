@@ -15,11 +15,11 @@ const Map = () => {
 
   // base map tile providers 
   const openstreetMap = L.tileLayer(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`, {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'}
   );
 
   const fastlyTerrain = L.tileLayer("https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg", {
-    attribution: '&copy; <a href="https://http://maps.stamen.com/copyright">Staman Design</a> contributors'}
+    attribution: '&copy; <a href="https://http://maps.stamen.com/copyright">Staman Design</a>'}
   );
 
   // create an object to hold base layer names, to appear in the basemap switcher list
@@ -28,12 +28,13 @@ const Map = () => {
     "Terrain": fastlyTerrain
   }
 
-  // tile overlay providers -- TO DO
-  const OpenWeatherMapRain = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid={apiKey}', {
-    attribution: 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
-    apiKey: '<insert your api key here>',
-    opacity: 0.5
+  // tile overlay providers - see https://openweathermap.org/api/weathermaps
+  const OpenWeatherMapPrecipitation = L.tileLayer('https://{s}.tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid={apiKey}', {
+    attribution: '&copy; | <a href="http://openweathermap.org">OpenWeatherMap</a>',
+    apiKey: '4121a0a991bfa0be264252d3242c32f6',
+    opacity: .8
   });
+
 
   // layer groups to hold our overlay feactures
   var locations = L.layerGroup([]); 
@@ -42,7 +43,7 @@ const Map = () => {
 
   // create an object to hold overlay layer names, to appear in the basemap switcher list
   const overlayLayers = {
-    "rain": OpenWeatherMapRain,
+    "precipitation": OpenWeatherMapPrecipitation,
     "Locations" : locations,
     "Links" : links,
     "Topologies" : topologies
