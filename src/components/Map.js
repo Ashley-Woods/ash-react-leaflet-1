@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { useState } from "react";
+//import { useState } from "react";
 import { useObserver } from "mobx-react-lite";
 import { useStores } from "../stores/index";
 import L from "leaflet";
@@ -13,34 +13,65 @@ const Map = () => {
   const layerRef = useRef(null)
   const { mapStore } = useStores();
 
-  // Base tile for the map:
-  tileRef.current = L.tileLayer(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`, {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  });
+  // base map tile providers 
+  const openstreetMap = L.tileLayer(`https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png`, {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}
+  );
 
-  // L.TileLayer("http://tile.openweathermap.org/map/precipitation_new/{z}/{x}/{y}.png?appid=owmkeyhere"));
+  const fastlyTerrain = L.tileLayer("https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.jpg", {
+    attribution: '&copy; <a href="https://http://maps.stamen.com/copyright">Staman Design</a> contributors'}
+  );
 
+  // create an object to hold base layer names, to appear in the basemap switcher list
+  const baseLayers = {
+    "Streets": openstreetMap,
+    "Terrain": fastlyTerrain
+  }
+
+// tile overlay providers -- TO DO
+const OpenWeatherMap_Clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid={apiKey}', {
+  attribution: 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
+  apiKey: '<insert your api key here>',
+  opacity: 0.5
+});
+
+// layer groups to hold our overlay feactures
+var locations = L.layerGroup([]); 
+var links = L.layerGroup([]);
+var topologies = L.layerGroup([]);
+
+// create an object to hold feacture layer names, to appear in the switcher list
+  const feactureLayers = {
+    "Locations" : locations,
+    "Links" : links,
+    "Topologies" : topologies
+  };
+
+  // inital base tile for the map:
+tileRef.current = openstreetMap;
+//  tileRef.current = fastlyTerrain;
+ 
   // Options for our map instance:
   const mapParams = {
     center: mapStore.center,
     zoom: mapStore.zoom,
     zoomControl: false,
     closePopupOnClick: false,
-    layers: [tileRef.current] // Start with just the base layer
+    layers: [tileRef.current] // deafult base #### may add more later #####
   };
   
+
   useEffect(() => {
+    
     // Map creation:
     mapRef.current = L.map("map", mapParams);
 
-    // Add the base layer to the control:
-    controlRef.current = L.control.layers({ 
-      OpenStreetMap: tileRef.current 
-    }).addTo(mapRef.current);
-      
+    // add our map controls
+    L.control.layers(baseLayers, feactureLayers, {position: 'topleft'}).addTo(mapRef.current);
+
     // Add zoomControl:
     L.control.zoom({ 
-      position: "topright" 
+      position: "topleft" 
     }).addTo(mapRef.current);
 
     // Add scale
@@ -48,15 +79,9 @@ const Map = () => {
 
     // Map events:
     mapRef.current.on("zoomstart", () => {
-        console.log('zoom ' + mapRef.current.getZoom());
         mapStore.zoom = mapRef.current.getZoom();
-      });
-
-    // Create the layerGroup:
-    layerRef.current = L.layerGroup().addTo(mapRef.current);
-    //controlRef.current.addOverlay(layerRef.current, 'Locations');
-    //controlRef.current.addOverlay(layerRef.current, 'Links');
-
+    });
+    
   }, [])
 
   return useObserver (() => (
