@@ -28,28 +28,28 @@ const Map = () => {
     "Terrain": fastlyTerrain
   }
 
-// tile overlay providers -- TO DO
-const OpenWeatherMap_Clouds = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid={apiKey}', {
-  attribution: 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
-  apiKey: '<insert your api key here>',
-  opacity: 0.5
-});
+  // tile overlay providers -- TO DO
+  const OpenWeatherMapRain = L.tileLayer('http://{s}.tile.openweathermap.org/map/clouds/{z}/{x}/{y}.png?appid={apiKey}', {
+    attribution: 'Map data &copy; <a href="http://openweathermap.org">OpenWeatherMap</a>',
+    apiKey: '<insert your api key here>',
+    opacity: 0.5
+  });
 
-// layer groups to hold our overlay feactures
-var locations = L.layerGroup([]); 
-var links = L.layerGroup([]);
-var topologies = L.layerGroup([]);
+  // layer groups to hold our overlay feactures
+  var locations = L.layerGroup([]); 
+  var links = L.layerGroup([]);
+  var topologies = L.layerGroup([]);
 
-// create an object to hold feacture layer names, to appear in the switcher list
-  const feactureLayers = {
+  // create an object to hold overlay layer names, to appear in the basemap switcher list
+  const overlayLayers = {
+    "rain": OpenWeatherMapRain,
     "Locations" : locations,
     "Links" : links,
     "Topologies" : topologies
   };
 
   // inital base tile for the map:
-tileRef.current = openstreetMap;
-//  tileRef.current = fastlyTerrain;
+  tileRef.current = openstreetMap;
  
   // Options for our map instance:
   const mapParams = {
@@ -60,14 +60,13 @@ tileRef.current = openstreetMap;
     layers: [tileRef.current] // deafult base #### may add more later #####
   };
   
-
   useEffect(() => {
     
     // Map creation:
     mapRef.current = L.map("map", mapParams);
 
     // add our map controls
-    L.control.layers(baseLayers, feactureLayers, {position: 'topleft'}).addTo(mapRef.current);
+    L.control.layers(baseLayers, overlayLayers, {position: 'topleft'}).addTo(mapRef.current);
 
     // Add zoomControl:
     L.control.zoom({ 
