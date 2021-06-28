@@ -72,13 +72,13 @@ const Map = () => {
   // add our mapData Feactures to map
   // console.log(mapData);
 
-  // parse mapData for CircleMarkers, and add to repsective overlay
+  // parse mapData for Location (CircleMarkers), and add to repsective overlay
   var loc = L.geoJSON(mapData, {
     filter: function(feacture, layer) {
       return feacture.properties.shape == "CircleMarker";
     },
     pointToLayer: function(feature, latlng) {
-      console.log(feature.properties);
+      //console.log(feature.properties);
       const siColor = feature.properties.si == "1" ? "#ff0000" : "#000000";
       const rcColor = feature.properties.rc == "1" ? "#ff0000" : "#00ff00";
       return new L.CircleMarker(latlng, 
@@ -86,7 +86,7 @@ const Map = () => {
         color: siColor,
         weight: 2,
         fill: true,
-        fillOpacity :0.5,
+        fillOpacity :0.7,
         fillColor : rcColor
     }).on('mouseover', function() {
         this.bindPopup(feature.properties.name).openPopup();
@@ -95,6 +95,33 @@ const Map = () => {
   })
   loc.addTo(locations);
   
+  // parse mapData for links (Lines), and add to repsective overlay
+  var line = L.geoJSON(mapData, {
+    filter: function(feacture, layer) {
+      return feacture.properties.shape == "Line";
+    },
+    pointToLayer: function(feature, latlng) {
+      console.log(feature.properties);
+      const siColor = feature.properties.si == "1" ? "#ff0000" : "#000000";
+      const rcColor = feature.properties.rc == "1" ? "#ff0000" : "#00ff00";
+      
+      // TO DO
+      return new L.CircleMarker(latlng, 
+        {radius: 5, 
+        color: siColor,
+        weight: 2,
+        fill: true,
+        fillOpacity :0.7,
+        fillColor : rcColor
+    }).on('mouseover', function() {
+        this.bindPopup(feature.properties.name).openPopup();
+      });
+    }
+  })
+  loc.addTo(locations);
+
+
+ 
   
   
 //mapRef.fitBounds(locations.getBounds(), {
