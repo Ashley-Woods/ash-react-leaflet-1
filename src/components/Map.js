@@ -2,9 +2,9 @@ import React, { useEffect, useRef } from "react";
 //import { useState } from "react";
 import { useObserver } from "mobx-react-lite";
 import { useStores } from "../stores/index";
-import L from "leaflet";
+import L, {geoJSON, getBounds, fitBounds} from "leaflet";
 import "../styles/Map.css";
-import testData from "../data/data.json";
+import mapData from "../data/data.json";
 
 const Map = () => {
   const mapRef = useRef(null)
@@ -22,7 +22,7 @@ const Map = () => {
     attribution: '&copy; <a href="https://http://maps.stamen.com/copyright">Staman Design</a>'}
   );
 
-  // create an object to hold base layer names, to appear in the basemap switcher list
+  // create object to hold base layer names, to appear in the basemap switcher list
   const baseLayers = {
     "Streets": openstreetMap,
     "Terrain": fastlyTerrain
@@ -35,15 +35,22 @@ const Map = () => {
     opacity: .8
   });
 
+  // const OpenWeatherMapRadar = L.tileLayer('https://{s}.tile.openweathermap.org/map/2.0/radar/{z}/{x}/{y}.png?appid={apiKey}&tm={time}', {
+  //   attribution: '&copy; | <a href="http://openweathermap.org">OpenWeatherMap</a>',
+  //   apiKey: '4121a0a991bfa0be264252d3242c32f6',
+  //   time: Date.now(),
+  //   opacity: .8
+  // });
 
   // layer groups to hold our overlay feactures
   var locations = L.layerGroup([]); 
   var links = L.layerGroup([]);
   var topologies = L.layerGroup([]);
 
-  // create an object to hold overlay layer names, to appear in the basemap switcher list
+  // create object to hold overlay layer names, to appear in the basemap switcher list
   const overlayLayers = {
-    "precipitation": OpenWeatherMapPrecipitation,
+    "Precipitation": OpenWeatherMapPrecipitation,
+  //  "Radar" : OpenWeatherMapRadar,
     "Locations" : locations,
     "Links" : links,
     "Topologies" : topologies
@@ -60,24 +67,47 @@ const Map = () => {
     closePopupOnClick: false,
     layers: [tileRef.current] // deafult base #### may add more later #####
   };
+
+  // add our mapData Feactures to map
+  console.log(mapData);
+
+  // parse mapData for CircleMarkers, and add to repsective overlay layer
+  var loc = L.geoJSON(mapData, {
+    filter: function(feacture, layer) {
+      return feacture.properties.shape == "CircleMarker";
+    },
+    pointToLayer: function(feature, latlng) {
+        return L.marker(latlng, {
+            
+        }).on('mouseover', function() {
+            this.bindPopup(feature.properties.Name).openPopup();
+        });
+    }
+  })
+  loc.addTo(locations);
   
+//mapRef.fitBounds(locations.getBounds(), {
+//    padding: [50, 50]
+//  });
+
+  // handle map controls and events 
   useEffect(() => {
     
-    // Map creation:
+    // map creation:
     mapRef.current = L.map("map", mapParams);
 
     // add our map controls
     L.control.layers(baseLayers, overlayLayers, {position: 'topleft'}).addTo(mapRef.current);
 
-    // Add zoomControl:
+    // add zoomControl:
     L.control.zoom({ 
       position: "topleft" 
     }).addTo(mapRef.current);
 
-    // Add scale
+    // add scale
     L.control.scale().addTo(mapRef.current);
 
-    // Map events:
+    // map events:
     mapRef.current.on("zoomstart", () => {
         mapStore.zoom = mapRef.current.getZoom();
     });
@@ -88,6 +118,7 @@ const Map = () => {
     <>
       <div id="map" 
         className="Map"/>
+        
     </>
   ))
 }
