@@ -2,7 +2,8 @@ import React, { useEffect, useRef } from "react";
 //import { useState } from "react";
 import { useObserver } from "mobx-react-lite";
 import { useStores } from "../stores/index";
-import L, {geoJSON, getBounds, fitBounds} from "leaflet";
+import L from "leaflet";
+//import {Circle, CircleMarker, getBounds, fitBounds, geoJSON} from "react-leaflet";
 import "../styles/Map.css";
 import mapData from "../data/data.json";
 
@@ -65,26 +66,29 @@ const Map = () => {
     zoom: mapStore.zoom,
     zoomControl: false,
     closePopupOnClick: false,
-    layers: [tileRef.current] // deafult base #### may add more later #####
+    layers: [tileRef.current, locations, links, topologies] // deafult base 
   };
 
   // add our mapData Feactures to map
-  console.log(mapData);
+  // console.log(mapData);
 
-  // parse mapData for CircleMarkers, and add to repsective overlay layer
+  // parse mapData for CircleMarkers, and add to repsective overlay
   var loc = L.geoJSON(mapData, {
     filter: function(feacture, layer) {
       return feacture.properties.shape == "CircleMarker";
     },
     pointToLayer: function(feature, latlng) {
-        return L.marker(latlng, {
-            
-        }).on('mouseover', function() {
-            this.bindPopup(feature.properties.Name).openPopup();
-        });
+      // console.log(latlng);
+      return new L.CircleMarker(latlng, {radius: 5, color: "#ff0000"
+      
+    }).on('mouseover', function() {
+        this.bindPopup(feature.properties.Name).openPopup();
+      });
     }
   })
   loc.addTo(locations);
+  
+  
   
 //mapRef.fitBounds(locations.getBounds(), {
 //    padding: [50, 50]
