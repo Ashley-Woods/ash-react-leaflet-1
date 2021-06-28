@@ -65,7 +65,7 @@ const Map = () => {
     zoom: mapStore.zoom,
     zoomControl: false,
     closePopupOnClick: false,
-    layers: [tileRef.current, locations, links, topologies] // deafult base 
+    layers: [tileRef.current, links, locations, topologies] // deafult base 
   };
 
   // add our mapData Feactures to map
@@ -102,12 +102,8 @@ const Map = () => {
     pointToLayer: function(feature, latlng) {
       console.log(feature.properties);
       const rcColor = feature.properties.rc == "1" ? "#ff0000" : "#00ff00";
-      
-      // TO DO
       return new L.polyline(latlng, { 
-        color: 'rcColor',
-        weight: 2,
-        
+        color: 'rcColor',        
     }).on('mouseover', function() {
         this.bindPopup(feature.properties.name).openPopup();
       });
