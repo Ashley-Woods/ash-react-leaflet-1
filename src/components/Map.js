@@ -78,11 +78,11 @@ const Map = () => {
       return feacture.properties.shape == "CircleMarker";
     },
     pointToLayer: function(feature, latlng) {
-      // console.log(latlng);
+      console.log(feature);
       return new L.CircleMarker(latlng, {radius: 5, color: "#ff0000"
       
     }).on('mouseover', function() {
-        this.bindPopup(feature.properties.Name).openPopup();
+        this.bindPopup(feature.properties.name).openPopup();
       });
     }
   })

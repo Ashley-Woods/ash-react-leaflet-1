@@ -5,7 +5,9 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 001",
+        "si": "Green",
+        "rc": "Red",
         "category": "default"
       },
       "geometry": {
@@ -18,7 +20,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 002",
         "category": "default"
       },
       "geometry": {
@@ -31,7 +33,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 003",
         "category": "default"
       },
       "geometry": {
@@ -44,7 +46,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 004",
         "category": "default"
       },
       "geometry": {
@@ -57,7 +59,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 005",
         "category": "default"
       },
       "geometry": {
@@ -70,7 +72,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 006",
         "category": "default"
       },
       "geometry": {
@@ -83,7 +85,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 007",
         "category": "default"
       },
       "geometry": {
@@ -96,7 +98,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 008",
         "category": "default"
       },
       "geometry": {
@@ -109,7 +111,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 009",
         "category": "default"
       },
       "geometry": {
@@ -122,7 +124,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 010",
         "category": "default"
       },
       "geometry": {
@@ -135,7 +137,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 011",
         "category": "default"
       },
       "geometry": {
@@ -148,7 +150,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 012",
         "category": "default"
       },
       "geometry": {
@@ -161,7 +163,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 013",
         "category": "default"
       },
       "geometry": {
@@ -174,7 +176,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 014",
         "category": "default"
       },
       "geometry": {
@@ -187,7 +189,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 015",
         "category": "default"
       },
       "geometry": {
@@ -200,7 +202,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 016",
         "category": "default"
       },
       "geometry": {
@@ -213,7 +215,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 017",
         "category": "default"
       },
       "geometry": {
@@ -226,7 +228,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 018",
         "category": "default"
       },
       "geometry": {
@@ -239,7 +241,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 019",
         "category": "default"
       },
       "geometry": {
@@ -252,7 +254,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 020",
         "category": "default"
       },
       "geometry": {
@@ -265,7 +267,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 021",
         "category": "default"
       },
       "geometry": {
@@ -278,7 +280,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 022",
         "category": "default"
       },
       "geometry": {
@@ -291,7 +293,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 023",
         "category": "default"
       },
       "geometry": {
@@ -304,7 +306,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 024",
         "category": "default"
       },
       "geometry": {
@@ -317,7 +319,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 025",
         "category": "default"
       },
       "geometry": {
@@ -330,7 +332,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 026",
         "category": "default"
       },
       "geometry": {
@@ -343,7 +345,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 027",
         "category": "default"
       },
       "geometry": {
@@ -356,7 +358,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 028",
         "category": "default"
       },
       "geometry": {
@@ -531,7 +533,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 029",
         "category": "default"
       },
       "geometry": {
@@ -544,7 +546,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 030",
         "category": "default"
       },
       "geometry": {
@@ -557,7 +559,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 031",
         "category": "default"
       },
       "geometry": {
@@ -570,7 +572,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 032",
         "category": "default"
       },
       "geometry": {
@@ -583,7 +585,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 033",
         "category": "default"
       },
       "geometry": {
@@ -596,7 +598,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 034",
         "category": "default"
       },
       "geometry": {
@@ -609,7 +611,7 @@
       "type": "Feature",
       "properties": {
         "shape": "CircleMarker",
-        "name": "Unnamed Layer",
+        "name": "RBS 035",
         "category": "default"
       },
       "geometry": {
