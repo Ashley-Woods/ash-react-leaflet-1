@@ -78,9 +78,16 @@ const Map = () => {
       return feacture.properties.shape == "CircleMarker";
     },
     pointToLayer: function(feature, latlng) {
-      console.log(feature);
-      return new L.CircleMarker(latlng, {radius: 5, color: "#ff0000"
-      
+      console.log(feature.properties);
+      const siColor = feature.properties.si == "1" ? "#ff0000" : "#000000";
+      const rcColor = feature.properties.rc == "1" ? "#ff0000" : "#00ff00";
+      return new L.CircleMarker(latlng, 
+        {radius: 5, 
+        color: siColor,
+        weight: 2,
+        fill: true,
+        fillOpacity :0.5,
+        fillColor : rcColor
     }).on('mouseover', function() {
         this.bindPopup(feature.properties.name).openPopup();
       });

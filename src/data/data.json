@@ -6,8 +6,8 @@
       "properties": {
         "shape": "CircleMarker",
         "name": "RBS 001",
-        "si": "Green",
-        "rc": "Red",
+        "si": "1",
+        "rc": "1",
         "category": "default"
       },
       "geometry": {
