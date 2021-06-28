@@ -3,7 +3,6 @@ import React, { useEffect, useRef } from "react";
 import { useObserver } from "mobx-react-lite";
 import { useStores } from "../stores/index";
 import L from "leaflet";
-//import {Circle, CircleMarker, getBounds, fitBounds, geoJSON} from "react-leaflet";
 import "../styles/Map.css";
 import mapData from "../data/data.json";
 
@@ -74,15 +73,15 @@ const Map = () => {
 
   // parse mapData for Location (CircleMarkers), and add to repsective overlay
   var loc = L.geoJSON(mapData, {
-    filter: function(feacture, layer) {
+    filter: function(feacture) {
       return feacture.properties.shape == "CircleMarker";
     },
     pointToLayer: function(feature, latlng) {
       //console.log(feature.properties);
       const siColor = feature.properties.si == "1" ? "#ff0000" : "#000000";
       const rcColor = feature.properties.rc == "1" ? "#ff0000" : "#00ff00";
-      return new L.CircleMarker(latlng, 
-        {radius: 5, 
+      return new L.CircleMarker(latlng, {
+        radius: 5, 
         color: siColor,
         weight: 2,
         fill: true,
@@ -97,28 +96,24 @@ const Map = () => {
   
   // parse mapData for links (Lines), and add to repsective overlay
   var line = L.geoJSON(mapData, {
-    filter: function(feacture, layer) {
+    filter: function(feacture) {
       return feacture.properties.shape == "Line";
     },
     pointToLayer: function(feature, latlng) {
       console.log(feature.properties);
-      const siColor = feature.properties.si == "1" ? "#ff0000" : "#000000";
       const rcColor = feature.properties.rc == "1" ? "#ff0000" : "#00ff00";
       
       // TO DO
-      return new L.CircleMarker(latlng, 
-        {radius: 5, 
-        color: siColor,
+      return new L.polyline(latlng, { 
+        color: 'rcColor',
         weight: 2,
-        fill: true,
-        fillOpacity :0.7,
-        fillColor : rcColor
+        
     }).on('mouseover', function() {
         this.bindPopup(feature.properties.name).openPopup();
       });
     }
   })
-  loc.addTo(locations);
+  line.addTo(links);
 
 
  
