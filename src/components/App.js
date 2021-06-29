@@ -18,7 +18,7 @@ export default function App() {
           <Col>
             <Map />
           </Col>
-          <Col>
+          <Col xs lg="2">
             <InfoPanel />
           </Col>
         </Row>
