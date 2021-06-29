@@ -99,16 +99,15 @@ const Map = () => {
       return feacture.properties.shape == 'CircleMarker';
     },
     pointToLayer: function(feature, latlng) {
-      //console.log(feature.properties);
       const siColor = feature.properties.si == '1' ? '#ff0000' : '#000000';
       const rcColor = feature.properties.rc == '1' ? '#ff0000' : '#00ff00';
       return new L.CircleMarker(latlng, {
-        radius: 5,
+        radius: 4,
         color: siColor,
-        weight: 2,
+        weight: 1,
         fill: true,
-        fillOpacity: 0.7,
-        fillColor: rcColor
+        fillOpacity: 1,
+        fillColor: rcColor,
       }).on('mouseover', function() {
         this.bindPopup(feature.properties.name).openPopup();
       });
@@ -116,13 +115,15 @@ const Map = () => {
   });
   loc.addTo(locations);
 
-  // parse mapData for links (Lines), and add to repsective overlay
-  var line = L.geoJSON(mapData, {
+// #######  BELOW NOT 100% Lines & Polygons colors not picked up
+
+    // parse mapData for links (Lines), and add to repsective overlay
+  var lines = L.geoJSON(mapData, {
     filter: function(feacture) {
       return feacture.properties.shape == 'Line';
     },
     pointToLayer: function(feature, latlng) {
-      // console.log(feature.properties);
+      console.log(feature.properties); // not called, but somehow feacture added?
       const rcColor = feature.properties.rc == '1' ? '#ff0000' : '#00ff00';
       return new L.polyline(latlng, {
         color: rcColor
@@ -131,17 +132,17 @@ const Map = () => {
       });
     }
   });
-  line.addTo(links);
+  lines.addTo(links);
 
   // parse mapData for topologies (Lines), and add to repsective overlay
-  var line = L.geoJSON(mapData, {
+  var topology = L.geoJSON(mapData, {
     filter: function(feacture) {
       return feacture.properties.shape == 'Polygon';
     },
     pointToLayer: function(feature, latlng) {
+      console.log(feature.properties); // not called, but somehow feacture added?
       const siColor = feature.properties.rc == '1' ? '#ff0000' : '#00ff0';
-      console.log(feature);
-      return new L.polygon(latlng, {
+            return new L.polygon(latlng, {
         color: '#ffffff',
         fillColor: '#123456',
         opacity: 0.5,
@@ -152,7 +153,7 @@ const Map = () => {
       });
     }
   });
-  line.addTo(topologies);
+  topology.addTo(topologies);
 
   //mapRef.fitBounds(locations.getBounds(), {
   //    padding: [50, 50]
