@@ -42,6 +42,14 @@ const Map = () => {
   //   opacity: .8
   // });
 
+  const Stamen_TonerLines = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/toner-lines/{z}/{x}/{y}{r}.{ext}', {
+    attribution: '&copy; <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    subdomains: 'abcd',
+    minZoom: 0,
+    maxZoom: 20,
+    ext: 'png'
+  });
+
   // layer groups to hold our overlay feactures
   var locations = L.layerGroup([]); 
   var links = L.layerGroup([]);
@@ -50,6 +58,7 @@ const Map = () => {
   // create object to hold overlay layer names, to appear in the basemap switcher list
   const overlayLayers = {
     "Precipitation": OpenWeatherMapPrecipitation,
+    "Regions": Stamen_TonerLines,
   //  "Radar" : OpenWeatherMapRadar,
     "Locations" : locations,
     "Links" : links,
